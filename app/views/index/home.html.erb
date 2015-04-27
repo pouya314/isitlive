@@ -1,0 +1,17 @@
+<h1>Live Updates:</h1>
+
+<div class="content"></div>
+
+<script charset="utf-8">
+
+  jQuery(document).ready(function() {
+    console.log( "I'm here" );
+    setTimeout(function() {
+      var source = new EventSource( '/newmsg' );
+      source.addEventListener('new_message_available', function(e) {
+        $( ".content" ).append(JSON.parse(e.data).message + "<br>");
+      });
+    }, 1);
+  });
+
+</script>
